@@ -8,7 +8,7 @@ const movie_url = base_url + '/movie/popular?' + api_key + '&language=pt-br&page
 const series_url = base_url + '/tv/popular?' + api_key + '&language=pt-br&page=3'
 const top_rated_url = base_url + '/movie/top_rated?' + api_key + '&language=pt-br&page=5'
 const url_recomendations = base_url + '/movie/140/recommendations?' + api_key + '&language=pt-br&page=1'
- 
+
 //Elementos HTML
 const form = document.querySelector('#form');
 const search = document.querySelector('.search');
@@ -16,6 +16,7 @@ const container = document.querySelector('.container');
 const section_banner = document.querySelector('.section-banner');
 const menu_items = document.querySelectorAll('header .menu a')
 const moviesElement = document.querySelectorAll('.container .movie')
+let searchButton = document.querySelector('.searchbtn')
 
 //variáveis para o slide do banner
 let images = document.querySelectorAll('.banner-single');
@@ -23,31 +24,32 @@ let index = 0;
 let indexMax = images.length;
 let dots_slide = document.querySelectorAll('.wraper-dots .dots')
 
-getMovies(api_url)
 function getMovies(url){
   fetch(url).then((response) => response.json()).then((movies)=>{
     showMovies(movies.results)
- 
+    console.log(movies.results)
   })
-} 
+}getMovies(api_url)
 
- 
-function defineContentPage(){
-    if(location.href === 'http://127.0.0.1:5500/index.html'){
-      getMovies(api_url)
-    }else if(location.href === 'http://127.0.0.1:5500/filmes.html'){
-      getMovies(movie_url)
-    }else if(location.href === 'http://127.0.0.1:5500/series.html'){
-      getMovies(series_url)
-    }else if(location.href === 'http://127.0.0.1:5500/topRated.html'){
-      getMovies(top_rated_url)
-    }else if(location.href === 'http://127.0.0.1:5500/recomendations.html'){
-      getMovies(url_recomendations)
-    }
- }defineContentPage()
+
+function defineContentPage(){  
+     if(location.href == 'http://127.0.0.1:5500/index.html'){
+       getMovies(api_url)
+     }else if(location.href == 'http://127.0.0.1:5500/filmes.html'){
+       getMovies(movie_url)
+     }else if(location.href == 'http://127.0.0.1:5500/series.html'){
+       getMovies(series_url)
+     }else if(location.href == 'http://127.0.0.1:5500/topRated.html'){
+       getMovies(top_rated_url)
+     }else if(location.href == 'http://127.0.0.1:5500/recomendations.html'){
+       getMovies(url_recomendations)
+     }else if(location.href == 'http://127.0.0.1:5500/results.html'){
+       getMovies(search_url + '&query='+ localStorage.getItem('search'))
+     }
+}defineContentPage()
 
 function showMovies(movies){
-    container.innerHTML = ''
+  container.innerHTML = ''
     movies.forEach((movie)=>{
 
         let movieEl = document.createElement('div');
@@ -55,79 +57,76 @@ function showMovies(movies){
         const {poster_path,overview,title,vote_average,name,release_date,id} = movie
 
         movieEl.innerHTML = `
-                <div class="movie-img">
-                    <img src="${url_img+poster_path}" alt="">
-                    <div class="description">
-                        <p>${overview}</p>
-                    </div>
-                </div>
+        <div class="movie-img">
+        <img src="${url_img+poster_path}" alt="">
+        <div class="description">
+        <p>${overview}</p>
+        </div>
+        </div>
 
-                  <div class="footer-movie">
-                      <h1>${title || name}</h1>
-                      <h3 class="${getColor(vote_average)}">${vote_average}</h3>
-                  </div>
-                  <span style="display:none;" class="launch-date">${release_date}</span>
-                  <span style="display:none;" class="movie_id">${id}</span>
-         `
+        <div class="footer-movie">
+        <h1>${title || name}</h1>
+        <h3 class="${getColor(vote_average)}">${vote_average}</h3>
+        </div>
+        <span style="display:none;" class="launch-date">${release_date}</span>
+        <span style="display:none;" class="movie_id">${id}</span>
+        `
         container.append(movieEl)
-        })
-      
-    }
-
-    
-function showAboutMovie(){
-  setTimeout(()=>{
-    let boxFilm = document.querySelectorAll('.movie')
-
-         for(let i = 0; i < boxFilm.length; i++){
-              let adressImage = boxFilm[i].children[0].children[0].src
-              let titleFilm = boxFilm[i].children[1].children[0].innerText
-              let sinopseFilm = boxFilm[i].children[0].children[1].children[0].innerText
-              let averageVote = boxFilm[i].children[1].children[1].innerText
-              let launch = boxFilm[i].children[2].innerText
-              let id= boxFilm[i].children[3].innerText
-               
-              boxFilm[i].addEventListener('click',()=>{
-                  location.href = "about.html"
-                  localStorage.setItem('image',adressImage)
-                  localStorage.setItem('title',titleFilm)
-                  localStorage.setItem('description',sinopseFilm)
-                  localStorage.setItem('vote',averageVote)
-                  localStorage.setItem('launch',launch)
-                  localStorage.setItem('id',id)
-               })
-          }
-
-   },100)
-
-}showAboutMovie()
-
-
-
-function getColor(vote){
-    if(vote >= 7){
-      return 'green';
-    }else if(vote >= 5){
-      return 'yellow';
-    }else{
-      return 'red';
-    }
+    })
 }
-
+  
+  
+function showAboutMovie(){
+   setTimeout(()=>{
+      let boxFilm = document.querySelectorAll('.movie')
+      
+      for(let i = 0; i < boxFilm.length; i++){
+        let adressImage = boxFilm[i].children[0].children[0].src
+        let titleFilm = boxFilm[i].children[1].children[0].innerText
+        let sinopseFilm = boxFilm[i].children[0].children[1].children[0].innerText
+        let averageVote = boxFilm[i].children[1].children[1].innerText
+        let launch = boxFilm[i].children[2].innerText
+        let id= boxFilm[i].children[3].innerText
+        
+        boxFilm[i].addEventListener('click',()=>{
+          location.href = "about.html"
+          localStorage.setItem('image',adressImage)
+          localStorage.setItem('title',titleFilm)
+          localStorage.setItem('description',sinopseFilm)
+          localStorage.setItem('vote',averageVote)
+          localStorage.setItem('launch',launch)
+                  localStorage.setItem('id',id)
+                })
+              }
+              
+    },100)
+}showAboutMovie()
+          
+          
+          
+          function getColor(vote){
+            if(vote >= 7){
+              return 'green';
+            }else if(vote >= 5){
+              return 'yellow';
+            }else{
+              return 'red';
+            }
+          }
+          
 function searchMovie(){
     let searchTerm = search.value;
     
     if(searchTerm){
-      getMovies(search_url + '&query='+ searchTerm)
-    }else{
-      getMovies(api_url)
+      localStorage.setItem('search',searchTerm) 
     }
-      
-} 
-
+    
+  } 
+  
 form.addEventListener('submit',(e)=>{
-  e.preventDefault()
-  searchMovie()
+     e.preventDefault()
+     location.href = 'results.html'
+    searchMovie()
 })
 
 
@@ -145,24 +144,24 @@ function initSlideHome(){
 function startSlideHome(){
   intervalSlide = setInterval(()=>{
     initSlideHome()
-   },3000)
+  },3000)
 }startSlideHome()
 
 
-  function pauseSlideHome(){
-    for(let i = 0;i< dots_slide.length; i++){
-
-        dots_slide[i].addEventListener('mouseover',()=>{
-           clearInterval(intervalSlide)
-        })
-
-        dots_slide[i].addEventListener('mouseout',()=>{
-           startSlideHome()
-        })
-
-    }
+function pauseSlideHome(){
+  for(let i = 0;i< dots_slide.length; i++){
     
-  }pauseSlideHome()
+    dots_slide[i].addEventListener('mouseover',()=>{
+      clearInterval(intervalSlide)
+    })
+    
+    dots_slide[i].addEventListener('mouseout',()=>{
+      startSlideHome()
+    })
+    
+  }
+  
+}pauseSlideHome()
 
 
 
