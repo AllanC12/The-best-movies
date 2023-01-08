@@ -27,7 +27,7 @@ getMovies(api_url)
 function getMovies(url){
   fetch(url).then((response) => response.json()).then((movies)=>{
     showMovies(movies.results)
-    console.log(movies.results)
+ 
   })
 } 
 
