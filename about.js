@@ -4,17 +4,22 @@ const url_movies = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=506f
 const url_youtube = 'https://www.youtube.com/embed/'
 let keyVideo = []
 
+const icon_menu = document.querySelector('.icon-menu img')
+const menu_mobile = document.querySelector('.menu-mobile')
+const body = document.querySelector('body')
+
+
 function getVideoApi(url){
     fetch(url).then(response => response.json()).then(videos=>{
         var response = videos
         getKey(response.results[0])})
         
-    }getVideoApi(url_movies)
+}getVideoApi(url_movies)
     
 
 function getKey(resultVideo){
-        keyVideo.push(resultVideo.key)
-        contentHtmlPage(url_youtube+keyVideo[0]);
+    keyVideo.push(resultVideo.key)
+    contentHtmlPage(url_youtube+keyVideo[0]);
         
  }
 
@@ -43,6 +48,19 @@ function contentHtmlPage(adress){
 
     containerAbout.prepend(about_movie)
 }
+
+function MenuMobile(){
+    icon_menu.addEventListener('click',()=>{
+       menu_mobile.style.setProperty('left','0')
+    })
+ 
+    body.addEventListener('click',()=>{
+       if(getComputedStyle(menu_mobile).left == '0px'){
+           menu_mobile.style.setProperty('left','-200px')
+       }
+    })
+ 
+ }MenuMobile()
 
 
  
