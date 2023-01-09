@@ -19,11 +19,10 @@ html,body{
 }
 
 header{
-     z-index: 1;
+    z-index: 1;
     display: flex;
-    justify-content: space-between;
-    padding: 0 2%;
-     width: 100%;
+    justify-content: space-around;
+    width: 100%;
     height: 4rem;
     background-color: #1a1c1a;
     position: fixed;
@@ -36,13 +35,14 @@ header{
 
 form{
    width: 100%;
-   max-width: 500px;
+   max-width: 400px;
 }
 
 header form .search{
     width: 100%;
+    max-width: 350px;
     background-color: transparent;
-    margin: 13px 0;
+    margin: 13px;
     outline: 0;
     border: 1px solid #262525;
     height: 35px;
@@ -51,6 +51,48 @@ header form .search{
     border-radius: 20px;
     font-size: 19px;
  
+}
+
+header .menu-mobile{
+    position: absolute;
+    left: -200px;
+    top:0;
+    padding: 10px 0;
+     z-index: 1;
+    width: 100%;
+    max-width: 200px;
+    height: 100vh;
+    background-color:  #1a1c1a;
+    transition: 1s;
+    -webkit-box-shadow: 8px -2px 10px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 8px -2px 10px -3px rgba(0,0,0,0.75);
+    box-shadow: 8px -2px 10px -3px rgba(0,0,0,0.75);
+}
+
+.icon-menu{
+    display:none;
+    cursor: pointer;
+    position: absolute;
+    left:5px;
+    padding: 10px 0;
+    width: 40px;
+    height:40px;
+}
+
+.icon-menu img{
+    width:100%;
+}
+
+header .menu-mobile a{
+    display: block;
+    padding:10px 5px;
+    text-decoration: none;
+    font-size: 19px;
+    color: #ccc;
+    transition: 1s;
+}
+header .menu-mobile a:hover{
+    background-color: #242323;
 }
 
 header .menu{
@@ -65,6 +107,7 @@ header .menu a{
     color: #ccc;
     text-decoration: none;
 }
+
 
 section.banner{
     width: 100%;
@@ -108,12 +151,10 @@ section.banner{
  .wraper-dots{
     display: flex;
     justify-content: space-between;
-    position: relative;
-    width: 200px;
+    width: 170px;
     height: 15px;
-    left: 43%;
-    top: 10%;
-
+    margin: 20px auto;
+ 
  }
 
  .wraper-dots .dots{
@@ -248,6 +289,7 @@ section.about-movie{
     background-color: #1a1818;
     max-width: 900px;
     margin: 0 auto;
+    padding: 0 2%;
 }
 
 aside.about{
@@ -301,8 +343,7 @@ aside.about .banner-about{
 
 .box-trailer iframe{
     width: 100%;
-    max-width: 500px;
-    height:50vh;
+     height:50vh;
 }
 
 .box-trailer p{
@@ -311,7 +352,67 @@ aside.about .banner-about{
 }
 /***************************************************************************/
 
+@media screen and (max-width: 900px){
+
+    header .search{
+        position: absolute;
+        left: 15%;
+    }
+
+    header .menu{
+     display:none;
+    }
+
+    .icon-menu{
+        display: block;
+    }
+
+
+}
+
+@media screen and (max-width: 900px){
+    section.about-movie{
+        display: block;
+        height: 100%;
+    }
+
+    aside.about{
+        width:100%;
+        max-width:100%;
+        height:60vh;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    aside.about .banner-about{
+        margin: 0;
+    }
+
+    
+    .box-trailer{
+        width:100%;
+        max-width:100%;
+        height: auto;
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box-trailer iframe{
+       width: 300px;
+    }
+
+    .box-trailer p{
+        padding: 10px 2%;
+      }
+}
+
 @media screen and (max-width: 600px){
+
+    header form .search{
+        width:100%;
+        max-width:250px;
+    }
 
     .movie{
         margin-bottom: 90px;
@@ -325,6 +426,10 @@ aside.about .banner-about{
         align-items: center;
     }
 
+    .banner-single{
+        height: 60vh;
+     }
+
     .footer-movie{
         height: auto;
         flex-direction: column;
@@ -335,6 +440,33 @@ aside.about .banner-about{
     .footer-movie h1, .footer-movie h3 {
         font-size: 20px;
     }
+
+    aside.about{
+        width:100%;
+        text-align: center;
+        display: block;
+        height: auto;
+        padding: 10px 1%;
+    }
+
+    aside.about .banner-about{
+        margin: 70px auto;
+    }
+
+    .box-trailer{
+        display: block;
+     }
+
+     .box-trailer .trailer{
+        text-align: center;
+     }
+
+     .box-trailer iframe{
+        width: 250px;
+     }
+
+     .box-trailer p{
+        text-align: center;
+        padding: 10px 1%;
+     }
 }
-
-
