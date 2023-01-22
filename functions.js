@@ -51,17 +51,17 @@ function getMovies(url){
 
 
 function defineContentPage(){
-    if(location.href == 'http://127.0.0.1:5500/index.html'){
+    if(location.href == 'hindex.html'){
       getMovies(api_url)
-    }else if(location.href == 'http://127.0.0.1:5500/filmes.html'){
+    }else if(location.href == 'filmes.html'){
       getMovies(movie_url)
-    }else if(location.href == 'http://127.0.0.1:5500/series.html'){
+    }else if(location.href == 'series.html'){
       getMovies(series_url)
-    }else if(location.href == 'http://127.0.0.1:5500/topRated.html'){
+    }else if(location.href == 'topRated.html'){
       getMovies(top_rated_url)
-    }else if(location.href == 'http://127.0.0.1:5500/recomendations.html'){
+    }else if(location.href == 'recomendations.html'){
       getMovies(url_recomendations)
-    }else if(location.href == 'http://127.0.0.1:5500/results.html'){
+    }else if(location.href == 'results.html'){
       getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
 }defineContentPage()
