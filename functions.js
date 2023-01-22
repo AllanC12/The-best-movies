@@ -61,7 +61,6 @@ function defineContentPage(){
     }else if(location.href == 'https://allanc12.github.io/The-best-movies/recomendations.html'){
       getMovies(url_recomendations)
     }else if(location.href == 'https://allanc12.github.io/The-best-movies/results.html'){
-       console.log('Entrou')
       getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
 }defineContentPage()
