@@ -51,17 +51,17 @@ function getMovies(url){
 
 
 function defineContentPage(){
-    if(location.href == 'hindex.html'){
+    if(location.href == 'https://allanc12.github.io/The-best-movies/index.html'){
       getMovies(api_url)
-    }else if(location.href == 'filmes.html'){
+    }else if(location.href == 'https://allanc12.github.io/The-best-movies/fimes.html'){
       getMovies(movie_url)
-    }else if(location.href == 'series.html'){
+    }else if(location.href == 'https://allanc12.github.io/The-best-movies/series.html'){
       getMovies(series_url)
-    }else if(location.href == 'topRated.html'){
+    }else if(location.href == 'https://allanc12.github.io/The-best-movies/topRated.html'){
       getMovies(top_rated_url)
-    }else if(location.href == 'recomendations.html'){
+    }else if(location.href == 'https://allanc12.github.io/The-best-movies/recomendations.html'){
       getMovies(url_recomendations)
-    }else if(location.href == 'results.html'){
+    }else if(location.href == 'https://allanc12.github.io/The-best-movies/results.html'){
       getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
 }defineContentPage()
@@ -143,7 +143,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = 'results.html'
+      location.href = 'https://allanc12.github.io/The-best-movies/results.html'
     }
     
   } 
