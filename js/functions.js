@@ -1,5 +1,13 @@
 //urls para cada tipo de requisição
-
+const api_key = `api_key=506fadb0256c13349acc05dabebf9604` 
+const url_base = `https://api.themoviedb.org/3`
+const api_url = `${url_base}/movie/popular?${api_key}&language=en-US&page=1`
+const movie_url = `${url_base}/movie/popular?${api_key}&language=en-US&page=2`
+const series_url = `${url_base}/tv/popular?${api_key}&language=en-US&page=1`
+const top_rated_url = `${url_base}/movie/top_rated?${api_key}&language=en-US&page=1`
+const url_recomendations = `${url_base}/movie/top_rated?${api_key}&language=en-US&page=2`
+const url_img = `https://image.tmdb.org/t/p/w500`
+const search_url = `${url_base}/search/movie?${api_key}`
 
 //Elementos HTML
 const form = document.querySelector('#form');
@@ -11,7 +19,6 @@ const moviesElement = document.querySelectorAll('.container .movie')
 const icon_menu = document.querySelector('.icon-menu img')
 const menu_mobile = document.querySelector('.menu-mobile')
 const body = document.querySelector('body')
-
 
 //variáveis para o slide do banner
 let images = document.querySelectorAll('.banner-single');
@@ -26,7 +33,7 @@ function menuMobile(){
    })
 
    body.addEventListener('click',()=>{
-      if(getComputedStyle(menu_mobile).left == '0px'){
+      if(getComputedStyle(menu_mobile).left === '0px'){
           menu_mobile.style.setProperty('left','-200px')
       }
   })
@@ -35,27 +42,35 @@ function menuMobile(){
 
 
 function getMovies(url){
-  fetch(url).then((response) => response.json()).then((movies)=>{
-    showMovies(movies.results)
-    console.log(movies.results)
-  })
+   try{
+      fetch(url).then((response) => response.json()).then((movies)=>{
+      showMovies(movies.results)
+      console.log(movies.results)
+    })
+   }catch(error){ 
+      console.log(error.message)
+   }
+
+
 }getMovies(api_url)
 
 
 function defineContentPage(){
-    if(location.href == 'http://127.0.0.1:5500/index.html'){
+    if(location.href === 'http://127.0.0.1:5500/index.html'){
       getMovies(api_url)
-    }else if(location.href == 'http://127.0.0.1:5500/html/filmes.html'){
+    }else if(location.href === 'http://127.0.0.1:5500/html/filmes.html'){
       getMovies(movie_url)
-    }else if(location.href == 'http://127.0.0.1:5500/html/series.html'){
+    }else if(location.href === 'http://127.0.0.1:5500/html/series.html'){
       getMovies(series_url)
-    }else if(location.href == 'http://127.0.0.1:5500/html/topRated.html'){
+    }else if(location.href === 'http://127.0.0.1:5500/html/topRated.html'){
       getMovies(top_rated_url)
-    }else if(location.href == 'http://127.0.0.1:5500/html/recomendations.html'){
+    }else if(location.href === 'http://127.0.0.1:5500/html/recomendations.html'){
       getMovies(url_recomendations)
-    }else if(location.href == 'http://127.0.0.1:5500/html/results.html'){
+    }else if(location.href === 'http://127.0.0.1:5500/html/results.html'){
+      console.log(location.href)
        getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
+
 }defineContentPage()
 
 
@@ -85,7 +100,7 @@ function showMovies(movies){
       container.append(movieEl)
     })
     
-  }
+}
   
   
 function showAboutMovie(){
