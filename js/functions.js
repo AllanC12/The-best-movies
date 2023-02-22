@@ -26,6 +26,37 @@ let index = 0;
 let indexMax = images.length;
 let dots_slide = document.querySelectorAll('.wraper-dots .dots')
 
+function pauseSlideHome(){
+  for(let i = 0;i< dots_slide.length; i++){
+    
+    dots_slide[i].addEventListener('mouseover',()=>{
+      clearInterval(intervalSlide)
+    })
+    
+    dots_slide[i].addEventListener('mouseout',()=>{
+      startSlideHome()
+    })
+    
+  }
+  
+}pauseSlideHome()
+
+function initSlideHome(){
+  images[index].classList.remove('selected')
+  dots_slide[index].style.backgroundColor = "transparent"
+  index++
+  if(index == indexMax) index = 0;
+  images[index].classList.add('selected')
+  dots_slide[index].style.backgroundColor = "#ccc"
+}
+
+
+function startSlideHome(){
+  intervalSlide = setInterval(()=>{
+    initSlideHome()
+  },3000)
+}startSlideHome()
+
 
 function menuMobile(){
    icon_menu.addEventListener('click',()=>{
@@ -55,17 +86,17 @@ function getMovies(url){
 
 
 function defineContentPage(){
-    if(location.href === 'https://github.com/AllanC12/index.html'){
+    if(location.href === 'hallanc12.github.io/index.html'){
       getMovies(api_url)
-    }else if(location.href === 'https:/github.com/AllanC12/html/filmes.html'){
+    }else if(location.href === 'allanc12.github.io/html/filmes.html'){
       getMovies(movie_url)
-    }else if(location.href === 'https:/github.com/AllanC12/html/series.html'){
+    }else if(location.href === 'allanc12.github.io/html/series.html'){
       getMovies(series_url)
-    }else if(location.href === 'https:/github.com/AllanC12/html/topRated.html'){
+    }else if(location.href === 'allanc12.github.io/html/topRated.html'){
       getMovies(top_rated_url)
-    }else if(location.href === 'https:/github.com/AllanC12/html/recomendations.html'){
+    }else if(location.href === 'allanc12.github.io/html/recomendations.html'){
       getMovies(url_recomendations)
-    }else if(location.href === 'https:/github.com/AllanC12/html/results.html'){
+    }else if(location.href === 'allanc12.github.io/html/results.html'){
       console.log(location.href)
        getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
@@ -116,7 +147,7 @@ function showAboutMovie(){
             let id= boxFilm[i].children[3].innerText
         
             boxFilm[i].addEventListener('click',()=>{
-                location.href = "http://127.0.0.1:5500/html/about.html"
+                location.href = "allanc12.github.io/html/about.html"
                 localStorage.setItem('image',adressImage)
                 localStorage.setItem('title',titleFilm)
                 localStorage.setItem('description',sinopseFilm)
@@ -149,7 +180,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = 'https://github.com/AllanC12/html/results.html'
+      location.href = 'allanc12.github.io/html/results.html'
     }
     
   } 
@@ -161,37 +192,7 @@ form.addEventListener('submit',(e)=>{
 
 
 
-function initSlideHome(){
-  images[index].classList.remove('selected')
-  dots_slide[index].style.backgroundColor = "transparent"
-  index++
-  if(index == indexMax) index = 0;
-  images[index].classList.add('selected')
-  dots_slide[index].style.backgroundColor = "#ccc"
-}
 
-
-function startSlideHome(){
-  intervalSlide = setInterval(()=>{
-    initSlideHome()
-  },3000)
-}startSlideHome()
-
-
-function pauseSlideHome(){
-  for(let i = 0;i< dots_slide.length; i++){
-    
-    dots_slide[i].addEventListener('mouseover',()=>{
-      clearInterval(intervalSlide)
-    })
-    
-    dots_slide[i].addEventListener('mouseout',()=>{
-      startSlideHome()
-    })
-    
-  }
-  
-}pauseSlideHome()
 
 
 
