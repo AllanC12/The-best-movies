@@ -135,7 +135,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = 'html/results.html'
+      location.href = '../html/results.html'
     }
     
   } 
