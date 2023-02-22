@@ -45,7 +45,6 @@ function getMovies(url){
    try{
       fetch(url).then((response) => response.json()).then((movies)=>{
       showMovies(movies.results)
-      console.log(movies.results)
     })
    }catch(error){ 
       console.log(error.message)
@@ -56,17 +55,17 @@ function getMovies(url){
 
 
 function defineContentPage(){
-    if(location.href === 'http://127.0.0.1:5500/index.html'){
+    if(location.href === 'https://github.com/AllanC12/index.html'){
       getMovies(api_url)
-    }else if(location.href === 'http://127.0.0.1:5500/html/filmes.html'){
+    }else if(location.href === 'https:/github.com/AllanC12/html/filmes.html'){
       getMovies(movie_url)
-    }else if(location.href === 'http://127.0.0.1:5500/html/series.html'){
+    }else if(location.href === 'https:/github.com/AllanC12/html/series.html'){
       getMovies(series_url)
-    }else if(location.href === 'http://127.0.0.1:5500/html/topRated.html'){
+    }else if(location.href === 'https:/github.com/AllanC12/html/topRated.html'){
       getMovies(top_rated_url)
-    }else if(location.href === 'http://127.0.0.1:5500/html/recomendations.html'){
+    }else if(location.href === 'https:/github.com/AllanC12/html/recomendations.html'){
       getMovies(url_recomendations)
-    }else if(location.href === 'http://127.0.0.1:5500/html/results.html'){
+    }else if(location.href === 'https:/github.com/AllanC12/html/results.html'){
       console.log(location.href)
        getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
@@ -150,7 +149,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = '../html/results.html'
+      location.href = 'https://github.com/AllanC12/html/results.html'
     }
     
   } 
