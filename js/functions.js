@@ -1,13 +1,5 @@
 //urls para cada tipo de requisição
-const base_url = 'https://api.themoviedb.org/3';
-const api_key = 'api_key=506fadb0256c13349acc05dabebf9604';
-const api_url = base_url+"/discover/movie?sort_by=popularity.desc&language=pt-br&" + api_key;
-const url_img = 'https://image.tmdb.org/t/p/w500';
-const search_url = base_url + '/search/movie?' + api_key;
-const movie_url = base_url + '/movie/popular?' + api_key + '&language=pt-br&page=4'
-const series_url = base_url + '/tv/popular?' + api_key + '&language=pt-br&page=3'
-const top_rated_url = base_url + '/movie/top_rated?' + api_key + '&language=pt-br&page=5'
-const url_recomendations = base_url + '/movie/140/recommendations?' + api_key + '&language=pt-br&page=1'
+
 
 //Elementos HTML
 const form = document.querySelector('#form');
@@ -143,7 +135,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = 'results.html'
+      location.href = 'html/results.html'
     }
     
   } 
