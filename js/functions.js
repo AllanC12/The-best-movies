@@ -181,7 +181,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = "html/results.html";
+      location.href = "https://allanc12.github.io/The-best-movies/html/results.html";
     }
     
   } 
