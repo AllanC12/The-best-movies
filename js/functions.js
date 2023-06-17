@@ -86,23 +86,24 @@ function getMovies(url){
 
 
 function defineContentPage(){
-    if(location.href === 'hallanc12.github.io/index.html'){
+    if(location.href === 'https://allanc12.github.io/The-best-movies/index.html'){
       getMovies(api_url)
-    }else if(location.href === 'allanc12.github.io/html/filmes.html'){
+    }else if(location.href === 'https://allanc12.github.io/The-best-movies/html/filmes.html'){
       getMovies(movie_url)
-    }else if(location.href === 'allanc12.github.io/html/series.html'){
+    }else if(location.href === 'https://allanc12.github.io/The-best-movies/html/series.html'){
       getMovies(series_url)
-    }else if(location.href === 'allanc12.github.io/html/topRated.html'){
+    }else if(location.href === 'https://allanc12.github.io/The-best-movies/html/topRated.html'){
       getMovies(top_rated_url)
-    }else if(location.href === 'allanc12.github.io/html/recomendations.html'){
+    }else if(location.href === 'https://allanc12.github.io/The-best-movies/html/recomendations.html'){
       getMovies(url_recomendations)
-    }else if(location.href === 'allanc12.github.io/html/results.html'){
+    }else if(location.href === 'https://allanc12.github.io/The-best-movies/html/results.html'){
       console.log(location.href)
        getMovies(search_url + '&query='+ localStorage.getItem('search'))
     }
 
 }defineContentPage()
 
+console.log(location.href)
 
 function showMovies(movies){
   container.innerHTML = ''
@@ -147,7 +148,7 @@ function showAboutMovie(){
             let id= boxFilm[i].children[3].innerText
         
             boxFilm[i].addEventListener('click',()=>{
-                location.href = "allanc12.github.io/html/about.html"
+                location.href = "html/about.html"
                 localStorage.setItem('image',adressImage)
                 localStorage.setItem('title',titleFilm)
                 localStorage.setItem('description',sinopseFilm)
@@ -180,7 +181,7 @@ function searchMovie(){
     
     if(searchTerm){
       localStorage.setItem('search',searchTerm) 
-      location.href = 'allanc12.github.io/html/results.html'
+      location.href = "html/results.html";
     }
     
   } 
