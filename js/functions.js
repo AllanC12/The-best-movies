@@ -148,7 +148,7 @@ function showAboutMovie(){
             let id= boxFilm[i].children[3].innerText
         
             boxFilm[i].addEventListener('click',()=>{
-                location.href = "html/about.html"
+                location.href = "https://allanc12.github.io/The-best-movies/html/about.html"
                 localStorage.setItem('image',adressImage)
                 localStorage.setItem('title',titleFilm)
                 localStorage.setItem('description',sinopseFilm)
